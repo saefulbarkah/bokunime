@@ -1,4 +1,4 @@
-import { cheerio } from '@/utils/index.util';
+import { cheerio } from './cheerio';
 
 interface paginationProps {
   html: string;
