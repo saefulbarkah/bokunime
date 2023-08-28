@@ -1,5 +1,5 @@
 import { scraping } from '@/utils/api';
-import { cheerio } from '@/utils/index.util';
+import { cheerio } from '@/utils/api/scraping/cheerio';
 import { NextResponse, NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {

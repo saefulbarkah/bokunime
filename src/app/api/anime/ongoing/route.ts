@@ -1,7 +1,8 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { scraping } from '@/utils/api';
-import { cheerio, extractString } from '@/utils/index.util';
+import { extractString } from '@/utils/index.util';
 import { pagination } from '@/utils/api/scraping/pagination.util';
+import { cheerio } from '@/utils/api/scraping/cheerio';
 
 export async function GET(req: NextRequest) {
   const page = req.nextUrl.searchParams.get('page') || 1;
