@@ -7,7 +7,7 @@ import { cheerio } from '@/utils/api/scraping/cheerio';
 export async function GET(req: NextRequest) {
   const page = req.nextUrl.searchParams.get('page') || 1;
   const response = await scraping.get(
-    `anime/?page=${page}&status=ongoing&order=update`
+    `/anime/?page=${page}&status=ongoing&order=update`
   );
   const html = await response.data;
   const $ = cheerio.load(html);

@@ -3,7 +3,7 @@ import { cheerio } from '@/utils/api/scraping/cheerio';
 import { NextResponse, NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  const response = await scraping.get('anime');
+  const response = await scraping.get('/anime');
   const html = await response.data;
   const $ = cheerio.load(html);
 
