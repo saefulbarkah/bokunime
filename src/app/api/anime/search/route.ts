@@ -1,23 +1,22 @@
-import { NextResponse, NextRequest } from 'next/server';
 import { scraping } from '@/utils/api';
-import { extractString } from '@/utils/index.util';
-import { pagination } from '@/utils/api/scraping/pagination.util';
-import { cheerio } from '@/utils/api/scraping/cheerio';
 import { httpApiErrorHandle } from '@/utils/api/errorHandling';
+import { cheerio } from '@/utils/api/scraping/cheerio';
+import { pagination } from '@/utils/api/scraping/pagination.util';
+import { extractString } from '@/utils/index.util';
+import { NextResponse, NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
+  const page = req.nextUrl.searchParams.get('page') || 1;
+  const searchQuery = `page=${page}&${req.nextUrl.searchParams}`;
   try {
-    const page = req.nextUrl.searchParams.get('page') || 1;
-    const response = await scraping.get(
-      `/anime/?page=${page}&status=ongoing&order=update`
-    );
-    const html = await response.data;
+    const resposne = await scraping.get(`/anime?${searchQuery}`);
+    const html = await resposne.data;
     const $ = cheerio.load(html);
 
     const $container = $('.listupd');
 
     // get lists ongoing
-    const ongoingLists: any[] = [];
+    const searchLists: any[] = [];
     $container.find('article').each((idx, el) => {
       const article = $(el);
       const div = article.find('div');
@@ -26,7 +25,7 @@ export async function GET(req: NextRequest) {
       const type = div.find('a .limit .typez').text().toLowerCase();
       const status = div.find('a .limit .bt .epx').text().toLowerCase();
       const thumbnail = div.find('a .limit img').attr('src');
-      ongoingLists.push({
+      searchLists.push({
         title: title,
         thumbnail: thumbnail,
         type: type,
@@ -35,15 +34,13 @@ export async function GET(req: NextRequest) {
       });
     });
 
-    //   pagination
     const paginate = pagination({ html, page: Number(page) });
-
-    const collection = {
+    const data = {
       ...paginate,
-      data: ongoingLists,
+      collection: searchLists,
     };
 
-    return NextResponse.json(collection);
+    return NextResponse.json(data);
   } catch (e: any) {
     return httpApiErrorHandle(e);
   }
