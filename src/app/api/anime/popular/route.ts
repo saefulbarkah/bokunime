@@ -1,5 +1,6 @@
 import { animeTypes } from '@/types';
 import { scraping } from '@/utils/api';
+import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 import { cheerio } from '@/utils/api/scraping/cheerio';
 import { extractString } from '@/utils/index.util';
 import { NextResponse, NextRequest } from 'next/server';
@@ -36,7 +37,7 @@ export async function GET(req: NextRequest) {
       });
     });
     return NextResponse.json(popularData);
-  } catch (error) {
-    return NextResponse.json(error);
+  } catch (e: any) {
+    return httpApiErrorHandle(e);
   }
 }

@@ -1,4 +1,5 @@
 import { scraping } from '@/utils/api';
+import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 import { cheerio } from '@/utils/api/scraping/cheerio';
 import { pagination } from '@/utils/api/scraping/pagination.util';
 import { extractString } from '@/utils/index.util';
@@ -40,7 +41,7 @@ export async function GET(req: NextRequest) {
     };
 
     return NextResponse.json(data);
-  } catch (error) {
-    return NextResponse.json(error);
+  } catch (e: any) {
+    return httpApiErrorHandle(e);
   }
 }
