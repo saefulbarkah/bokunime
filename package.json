@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/next-js": "^2.1.5",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@types/node": "20.5.3",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
@@ -16,9 +20,11 @@
     "cheerio": "^1.0.0-rc.12",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
+    "framer-motion": "^10.16.2",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.10.1",
     "typescript": "5.1.6"
   }
 }
