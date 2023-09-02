@@ -1,1 +1,2 @@
-export const targetUrl = process.env.TARGET_URL as string;
+const { TARGET_URL, NEXT_PUBLIC_API_URL, APP_NAME } = process.env;
+export { TARGET_URL, NEXT_PUBLIC_API_URL, APP_NAME };

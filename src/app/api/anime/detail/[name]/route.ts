@@ -1,6 +1,7 @@
 import { scraping } from '@/utils/api';
 import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 import { cheerio } from '@/utils/api/scraping/cheerio';
+import { getInformationAnime } from '@/utils/api/scraping/elements';
 import { extractString } from '@/utils/index.util';
 import { NextResponse, NextRequest } from 'next/server';
 
@@ -8,34 +9,7 @@ const getInformation = (html: string) => {
   const $ = cheerio.load(html);
 
   // get information
-  const thumbnail = $('.thumb img').attr('src');
-  const title = $('.entry-title').text();
-  const genres = $('.genxed')
-    .map((idx, el) => {
-      return $(el).text().trim().toLowerCase().split(' ');
-    })
-    .get();
-  const synopsis = $('.entry-content p').text();
-  const rating = $('.rating strong').text().replace('Rating ', '');
-  const status = $('.spe span')
-    .eq(0)
-    .contents()
-    .not('b')
-    .text()
-    .toLowerCase()
-    .trim();
-  const studio = $('.spe span').eq(1).contents().not('b').text().trim();
-  const duration = $('.spe span').eq(2).contents().not('b').text().trim();
-  const season = $('.spe span')
-    .eq(3)
-    .contents()
-    .not('b')
-    .text()
-    .trim()
-    .toLowerCase();
-  const type = $('.spe span').eq(4).contents().not('b').text().trim();
-  const createdAt = $('.spe .split time').eq(0).attr('datetime');
-  const updatedAt = $('.spe .split time').eq(1).attr('datetime');
+  const info = getInformationAnime(html);
 
   // get episodeLists
   const episodeLists: any = [];
@@ -71,18 +45,7 @@ const getInformation = (html: string) => {
   });
 
   return {
-    title,
-    thumbnail,
-    rating: Number(rating),
-    genres,
-    synopsis,
-    status,
-    studio,
-    duration,
-    season,
-    type,
-    createdAt,
-    updatedAt,
+    ...info,
     episodeLists,
     recommendationSeries,
   };

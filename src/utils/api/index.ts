@@ -1,8 +1,8 @@
-import { targetUrl } from '@/config/siteConfig';
+import { TARGET_URL } from '@/config/siteConfig';
 import axios from 'axios';
 
 const scraping = axios.create({
-  baseURL: targetUrl,
+  baseURL: TARGET_URL,
 });
 
 export { scraping };

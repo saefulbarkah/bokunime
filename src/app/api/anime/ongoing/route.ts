@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server';
 import { scraping } from '@/utils/api';
 import { extractString } from '@/utils/index.util';
-import { pagination } from '@/utils/api/scraping/pagination.util';
+import { pagination } from '@/utils/api/scraping/elements/pagination';
 import { cheerio } from '@/utils/api/scraping/cheerio';
 import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 

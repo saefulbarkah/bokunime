@@ -1,3 +1,4 @@
+import { animeTypes } from '@/types';
 import { scraping } from '@/utils/api';
 import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 import { cheerio } from '@/utils/api/scraping/cheerio';
@@ -12,7 +13,8 @@ export async function GET(req: NextRequest) {
 
     //   get recommnedation
     const $container = $('.series-gen');
-    const dataRecommendation: any = [];
+    const dataRecommendation: { genre: string; data: Partial<animeTypes>[] }[] =
+      [];
     $container.find('.listupd .tab-pane').each((idx, el) => {
       const genres = $container
         .find('.nav-tabs li')
