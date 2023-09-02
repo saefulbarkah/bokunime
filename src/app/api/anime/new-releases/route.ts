@@ -4,6 +4,7 @@ import { cheerio } from '@/utils/api/scraping/cheerio';
 import { pagination } from '@/utils/api/scraping/elements/pagination';
 import { extractString } from '@/utils/index.util';
 import { NextResponse, NextRequest } from 'next/server';
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
