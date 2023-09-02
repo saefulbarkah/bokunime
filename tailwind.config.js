@@ -5,10 +5,14 @@ module.exports = {
   theme: {
     container: {
       center: true,
-      padding: '2rem',
+      padding: '1.2rem',
       screens: {
         '2xl': '1400px',
       },
+    },
+    fontSize: {
+      sm: '12px',
+      md: '14px',
     },
     extend: {
       keyframes: {
@@ -31,6 +35,12 @@ module.exports = {
         danger: '#FF2060',
         'active-danger': '#C2043B',
         secondary: '#CDCDCD',
+        card: 'rgba(50, 55, 85, 0.50);',
+      },
+      fontSize: {
+        'heading-1': '28px',
+        'heading-2': '24px',
+        paragraph: '20px',
       },
     },
   },

@@ -2,6 +2,7 @@ import { APP_NAME } from '@/config/siteConfig';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import QueryProvider from '@/Providers/QueryProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -16,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.className} bg-background`}>{children}</body>
+      <body
+        className={`${inter.className} bg-background max-w-sm m-auto border min-h-screen dark:text-secondary`}
+      >
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   );
 }
