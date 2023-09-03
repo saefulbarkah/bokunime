@@ -7,4 +7,6 @@ export type animeTypes = {
   genres: string[];
   episode: number | string;
   status: string;
+  series: string;
+  score: number;
 };

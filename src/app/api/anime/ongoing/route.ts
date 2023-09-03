@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic';
 import { NextResponse, NextRequest } from 'next/server';
 import { scraping } from '@/utils/api';
 import { extractString } from '@/utils/index.util';
@@ -6,8 +7,8 @@ import { cheerio } from '@/utils/api/scraping/cheerio';
 import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 
 export async function GET(req: NextRequest) {
+  const page = req.nextUrl.searchParams.get('page') || 1;
   try {
-    const page = req.nextUrl.searchParams.get('page') || 1;
     const response = await scraping.get(
       `/anime/?page=${page}&status=ongoing&order=update`
     );
