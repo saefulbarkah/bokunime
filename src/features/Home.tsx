@@ -14,16 +14,18 @@ const TabMenus = () => {
   ];
   return (
     <>
-      {menus.map((item, idx) => (
-        <TabsTrigger
-          value={item.value}
-          key={idx}
-          className="group data-[state=active]:bg-transparent data-[state=active]:text-primary font-semibold text-md relative pl-5"
-        >
-          <div className="absolute group-data-[state=active]:bg-primary rounded-full w-[5px] h-[5px] left-0 translate-x-2"></div>
-          {item.label}
-        </TabsTrigger>
-      ))}
+      <TabsList className="bg-transparent dark:bg-transparent justify-start mb-7">
+        {menus.map((item, idx) => (
+          <TabsTrigger
+            value={item.value}
+            key={idx}
+            className="group data-[state=active]:bg-card rounded-xl data-[state=active]:text-primary font-semibold text-md relative pl-5 justify-start"
+          >
+            <div className="absolute group-data-[state=active]:bg-primary rounded-full w-[5px] h-[5px] left-0 translate-x-2"></div>
+            {item.label}
+          </TabsTrigger>
+        ))}
+      </TabsList>
     </>
   );
 };
@@ -36,9 +38,7 @@ export default function Home() {
       {/* Main content */}
       <div className="mt-[25px]">
         <Tabs defaultValue="recommendation" className="w-full">
-          <TabsList className="bg-transparent dark:bg-transparent w-full ">
-            <TabMenus />
-          </TabsList>
+          <TabMenus />
           <TabsContent value="recommendation">
             <Recommendations />
           </TabsContent>

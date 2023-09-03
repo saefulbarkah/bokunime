@@ -14,7 +14,7 @@ export const NewRelease = () => {
           New Release
         </h2>
       </div>
-      <CardAnimeSlider item={data.collection} />
+      <CardAnimeSlider item={data?.collection} />
     </div>
   );
 };

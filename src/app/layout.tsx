@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${inter.className} bg-background max-w-sm m-auto min-h-screen dark:text-secondary`}
+        className={`${inter.className} bg-background max-w-md m-auto min-h-screen dark:text-secondary`}
       >
         <QueryProvider>
+          <div className="pb-24">{children}</div>
           <Navbar />
-          {children}
         </QueryProvider>
       </body>
     </html>

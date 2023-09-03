@@ -41,7 +41,7 @@ function NavItems() {
 function Navbar() {
   return (
     <div className="fixed bottom-0 z-50">
-      <div className="w-[24rem] bg-background/80 h-14 backdrop-blur-md border-t-[1px] border-secondary/20 shadow-md">
+      <div className="w-[28rem] bg-background/80 h-14 backdrop-blur-md border-t-[1px] border-secondary/20 shadow-md">
         <div className="container h-full flex items-center">
           <NavItems />
         </div>

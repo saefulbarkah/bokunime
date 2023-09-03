@@ -1,4 +1,6 @@
 export const dynamic = 'force-dynamic';
+import { animeTypes } from '@/types';
+import { Tcollection } from '@/types/collection';
 import { scraping } from '@/utils/api';
 import { httpApiErrorHandle } from '@/utils/api/errorHandling';
 import { cheerio } from '@/utils/api/scraping/cheerio';
@@ -13,7 +15,7 @@ export async function GET(req: NextRequest) {
     const html = await response.data;
     const $ = cheerio.load(html);
     const $container = $('.bbnofrm').eq(1);
-    const dataReleases: any = [];
+    const dataReleases: Partial<animeTypes>[] = [];
     $container.find('.excstf article').each((idx, el) => {
       const thumbnail = $(el).find('.bsx .thumb a img').attr('src');
       const url = $(el).find('.bsx .thumb a').attr('href') as string;
@@ -43,7 +45,7 @@ export async function GET(req: NextRequest) {
     });
 
     const paginate = pagination({ html, page: Number(page) });
-    const data = {
+    const data: Tcollection = {
       ...paginate,
       collection: dataReleases,
     };
