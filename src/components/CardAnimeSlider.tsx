@@ -55,6 +55,7 @@ function CardAnimeSlider({ item }: CardProps) {
                   alt="sada"
                   fill
                   className="object-cover rounded"
+                  unoptimized={true}
                 />
                 {itm.status ? (
                   <div className="absolute bottom-0 left-0 bg-black/70 backdrop-blur-sm  z-10 w-full h-7 flex items-center justify-center">
