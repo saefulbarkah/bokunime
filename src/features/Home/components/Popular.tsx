@@ -3,10 +3,11 @@ import CardAnimeSlider from '@/components/Slider';
 import { usePopular } from '@/hooks/api/usePopular';
 import React from 'react';
 import { AnimeItemSlide } from './AnimeItemSlide';
+import Loading from '@/components/Loading';
 
 export const Popular = () => {
   const { data, isLoading } = usePopular();
-  if (isLoading) return <p>loading....</p>;
+  if (isLoading) return <Loading classParent="min-h-[calc(100vh-400px)]" />;
 
   return (
     <div className="flex flex-col gap-2">

@@ -27,7 +27,7 @@ function NavItems() {
         <Link
           href={item.path}
           key={item.path}
-          className={`w-[40px] text-[30px] ${
+          className={`text-[30px] ${
             pathName === item.path ? 'text-primary' : 'text-secondary'
           }`}
         >
@@ -40,8 +40,8 @@ function NavItems() {
 
 function Navbar() {
   return (
-    <div className="fixed bottom-0 z-50">
-      <div className="w-[28rem] bg-background/80 h-14 backdrop-blur-md border-t-[1px] border-secondary/20 shadow-md">
+    <div className="fixed bottom-0 z-50 w-full sm:w-[28rem]">
+      <div className="w-full bg-background/80 h-14 backdrop-blur-md border-t-[1px] border-secondary/20 shadow-md">
         <div className="container h-full flex items-center">
           <NavItems />
         </div>
