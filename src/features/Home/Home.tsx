@@ -5,7 +5,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Recommendations } from './components/Recommendations';
 import { NewRelease } from './components/NewRelease';
 import { Popular } from './components/Popular';
-import Search from './components/Search';
+import Search from '../../components/Search';
 
 const TabMenus = () => {
   const menus = [
@@ -14,22 +14,18 @@ const TabMenus = () => {
     { value: 'popular', label: 'Popular' },
   ];
   return (
-    <>
-      <Search>
-        <TabsList className="bg-transparent dark:bg-background w-full justify-start py-[30px]">
-          {menus.map((item, idx) => (
-            <TabsTrigger
-              value={item.value}
-              key={idx}
-              className="group data-[state=active]:bg-card rounded-xl data-[state=active]:text-primary font-semibold text-md relative pl-5 justify-start"
-            >
-              <div className="absolute group-data-[state=active]:bg-primary rounded-full w-[5px] h-[5px] left-0 translate-x-2"></div>
-              {item.label}
-            </TabsTrigger>
-          ))}
-        </TabsList>
-      </Search>
-    </>
+    <TabsList className="bg-transparent dark:bg-background w-full justify-start py-[30px]">
+      {menus.map((item, idx) => (
+        <TabsTrigger
+          value={item.value}
+          key={idx}
+          className="group data-[state=active]:bg-card rounded-xl data-[state=active]:text-primary font-semibold text-md relative pl-5 justify-start"
+        >
+          <div className="absolute group-data-[state=active]:bg-primary rounded-full w-[5px] h-[5px] left-0 translate-x-2"></div>
+          {item.label}
+        </TabsTrigger>
+      ))}
+    </TabsList>
   );
 };
 
@@ -41,7 +37,10 @@ export default function Home() {
       {/* Main content */}
       <div className="mt-[25px]">
         <Tabs defaultValue="recommendation" className="w-full">
-          <TabMenus />
+          <div className="sticky top-0 z-50 bg-background pt-[10px]">
+            <Search />
+            <TabMenus />
+          </div>
           <TabsContent value="recommendation">
             <Recommendations />
           </TabsContent>
