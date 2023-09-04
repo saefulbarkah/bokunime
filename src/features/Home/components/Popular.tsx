@@ -1,12 +1,12 @@
 'use client';
-import CardAnimeSlider from '@/components/CardAnimeSlider';
+import CardAnimeSlider from '@/components/Slider';
 import { usePopular } from '@/hooks/api/usePopular';
 import React from 'react';
+import { AnimeItemSlide } from './AnimeItemSlide';
 
 export const Popular = () => {
   const { data, isLoading } = usePopular();
   if (isLoading) return <p>loading....</p>;
-  console.log(data);
 
   return (
     <div className="flex flex-col gap-2">
@@ -15,7 +15,9 @@ export const Popular = () => {
           Popular Anime
         </h2>
       </div>
-      <CardAnimeSlider item={data} />
+      <CardAnimeSlider>
+        <AnimeItemSlide item={data} />
+      </CardAnimeSlider>
     </div>
   );
 };

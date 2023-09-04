@@ -6,6 +6,7 @@ import QueryProvider from '@/Providers/QueryProvider';
 import Navbar from '@/components/Navbar';
 export const dynamic = 'force-dynamic';
 const inter = Inter({ subsets: ['latin'] });
+import NextTopLoader from 'nextjs-toploader';
 
 export const metadata: Metadata = {
   title: `${APP_NAME}`,
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={`${inter.className} bg-background max-w-md m-auto min-h-screen dark:text-secondary`}
       >
+        <NextTopLoader />
         <QueryProvider>
           <div className="pb-24">{children}</div>
           <Navbar />

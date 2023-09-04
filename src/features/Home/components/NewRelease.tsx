@@ -1,7 +1,8 @@
 'use client';
-import CardAnimeSlider from '@/components/CardAnimeSlider';
+import CardAnimeSlider from '@/components/Slider';
 import { useNewRelease } from '@/hooks/api';
 import React from 'react';
+import { AnimeItemSlide } from './AnimeItemSlide';
 
 export const NewRelease = () => {
   const { data, isLoading } = useNewRelease();
@@ -14,7 +15,9 @@ export const NewRelease = () => {
           New Release
         </h2>
       </div>
-      <CardAnimeSlider item={data?.collection} />
+      <CardAnimeSlider>
+        <AnimeItemSlide item={data?.collection} />
+      </CardAnimeSlider>
     </div>
   );
 };

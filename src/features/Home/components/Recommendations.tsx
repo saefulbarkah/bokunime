@@ -1,7 +1,8 @@
 'use client';
-import CardAnimeSlider from '@/components/CardAnimeSlider';
+import CardAnimeSlider from '@/components/Slider';
 import { useRec } from '@/hooks/api';
 import React from 'react';
+import { AnimeItemSlide } from './AnimeItemSlide';
 
 export const Recommendations = () => {
   const { data, isLoading } = useRec();
@@ -18,7 +19,9 @@ export const Recommendations = () => {
             </h2>
           </div>
           <div className="mt-5">
-            <CardAnimeSlider item={item.data} />
+            <CardAnimeSlider>
+              <AnimeItemSlide item={item.data} />
+            </CardAnimeSlider>
           </div>
         </div>
       ))}
