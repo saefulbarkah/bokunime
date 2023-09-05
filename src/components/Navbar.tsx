@@ -40,8 +40,10 @@ function NavItems() {
         }`}
       >
         <FiBookmark />
-        {bookmark?.length !== 0 ? (
-          <div className="absolute top-0 right-0 translate-x-1 -translate-y-1 bg-danger text-white w-[10px] rounded-full h-[10px] flex items-center justify-center animate-pulse"></div>
+        {bookmark ? (
+          bookmark.length !== 0 ? (
+            <div className="absolute top-0 right-0 translate-x-1 -translate-y-1 bg-danger text-white w-[10px] rounded-full h-[10px] flex items-center justify-center animate-pulse"></div>
+          ) : null
         ) : null}
       </Link>
     </div>
