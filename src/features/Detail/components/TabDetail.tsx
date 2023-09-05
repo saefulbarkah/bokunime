@@ -7,7 +7,6 @@ import React from 'react';
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
@@ -33,33 +32,31 @@ const DetailContent = ({ data }: T) => {
 
 const EpisodeLists = ({ data }: { data: Partial<animeTypes> }) => {
   return (
-    <div>
-      <h2 className="font-semibold text-paragraph text-white">
-        Daftar Episode
-      </h2>
-      <div className="mt-5">
-        <Table className="overflow-x-hidden">
-          <TableHeader>
-            <TableRow className="text-md ">
-              <TableHead className="w-[50px] text-white">Eps</TableHead>
-              <TableHead className="text-white">Judul</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {data.episodeLists?.map((item, idx) => (
-              <TableRow key={idx}>
-                <TableCell>{item.episode}</TableCell>
-                <TableCell>
-                  <div className="bg-card rounded hover:bg-danger hover:text-white p-2 w-full transition">
-                    <Link href={'/episode/' + item.slug}>
-                      <p className="truncate w-[300px]">{item.title}</p>
-                    </Link>
-                  </div>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+    <div className="mt-5 flex flex-col gap-2">
+      <div className="flex gap-[10px]">
+        <div className="w-[50px] text-center">
+          <p>Eps.</p>
+        </div>
+        <div className="flex-1">
+          <p>Judul</p>
+        </div>
+      </div>
+      <Dvider className="h-[1px]" />
+      <div className="flex flex-col gap-[15px]">
+        {data.episodeLists?.map((item, id) => (
+          <React.Fragment key={id}>
+            <div className="flex gap-[10px] items-center">
+              <div className="w-[50px] text-center">{item.episode}</div>
+              <Link
+                href={'/stream/' + item.slug}
+                className="flex-1 truncate bg-card p-2 rounded-md text-sm hover:bg-danger hover:text-white transition"
+              >
+                {item.title}
+              </Link>
+            </div>
+            <Dvider className="h-[1px]" />
+          </React.Fragment>
+        ))}
       </div>
     </div>
   );
