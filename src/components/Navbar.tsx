@@ -3,8 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 import { FiHome, FiCalendar, FiBookmark } from 'react-icons/fi';
 import { usePathname } from 'next/navigation';
+import { useBookmark } from '@/hooks/useBookmark';
 
 function NavItems() {
+  const { bookmark } = useBookmark({});
   const pathName = usePathname();
   const items = [
     {
@@ -14,10 +16,6 @@ function NavItems() {
     {
       icon: <FiCalendar />,
       path: '/release-schedule',
-    },
-    {
-      icon: <FiBookmark />,
-      path: '/bookmark',
     },
   ];
 
@@ -34,6 +32,18 @@ function NavItems() {
           {item.icon}
         </Link>
       ))}
+
+      <Link
+        href={'/bookmark'}
+        className={`text-[30px] relative ${
+          pathName === '/bookmark' ? 'text-primary' : 'text-secondary'
+        }`}
+      >
+        <FiBookmark />
+        {bookmark?.length !== 0 ? (
+          <div className="absolute top-0 right-0 translate-x-1 -translate-y-1 bg-danger text-white w-[10px] rounded-full h-[10px] flex items-center justify-center animate-pulse"></div>
+        ) : null}
+      </Link>
     </div>
   );
 }
