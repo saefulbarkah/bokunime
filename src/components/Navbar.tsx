@@ -3,8 +3,10 @@ import Link from 'next/link';
 import React from 'react';
 import { FiHome, FiCalendar, FiBookmark } from 'react-icons/fi';
 import { usePathname } from 'next/navigation';
+import { useBookmark } from '@/hooks/useBookmark';
 
 function NavItems() {
+  const { bookmark } = useBookmark({});
   const pathName = usePathname();
   const items = [
     {
@@ -15,10 +17,6 @@ function NavItems() {
       icon: <FiCalendar />,
       path: '/release-schedule',
     },
-    {
-      icon: <FiBookmark />,
-      path: '/bookmark',
-    },
   ];
 
   return (
@@ -27,21 +25,33 @@ function NavItems() {
         <Link
           href={item.path}
           key={item.path}
-          className={`w-[40px] text-[30px] ${
+          className={`text-[30px] ${
             pathName === item.path ? 'text-primary' : 'text-secondary'
           }`}
         >
           {item.icon}
         </Link>
       ))}
+
+      <Link
+        href={'/bookmark'}
+        className={`text-[30px] relative ${
+          pathName === '/bookmark' ? 'text-primary' : 'text-secondary'
+        }`}
+      >
+        <FiBookmark />
+        {bookmark?.length !== 0 ? (
+          <div className="absolute top-0 right-0 translate-x-1 -translate-y-1 bg-danger text-white w-[10px] rounded-full h-[10px] flex items-center justify-center animate-pulse"></div>
+        ) : null}
+      </Link>
     </div>
   );
 }
 
 function Navbar() {
   return (
-    <div className="fixed bottom-0 z-50">
-      <div className="w-[28rem] bg-background/80 h-14 backdrop-blur-md border-t-[1px] border-secondary/20 shadow-md">
+    <div className="fixed bottom-0 z-50 w-full sm:w-[28rem]">
+      <div className="w-full bg-background/80 h-14 backdrop-blur-md border-t-[1px] border-secondary/20 shadow-md">
         <div className="container h-full flex items-center">
           <NavItems />
         </div>

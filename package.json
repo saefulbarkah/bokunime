@@ -29,13 +29,16 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.10.1",
+    "react-loader-spinner": "^5.4.5",
     "react-multi-carousel": "^2.8.4",
     "react-slick": "^0.29.0",
+    "react-spinners": "^0.13.8",
     "slick-carousel": "^1.8.1",
     "swiper": "^10.2.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "typescript": "5.1.6"
+    "typescript": "5.1.6",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@types/react-slick": "^0.23.10",

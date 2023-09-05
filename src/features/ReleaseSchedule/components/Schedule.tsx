@@ -5,11 +5,11 @@ import { useSchedule } from '@/hooks/api';
 import { SwiperSlide } from 'swiper/react';
 import Link from 'next/link';
 import Image from 'next/image';
+import Loading from '@/components/Loading';
 
 export default function Schedule() {
   const { data, isLoading } = useSchedule();
-  if (isLoading) return <p>loading.....</p>;
-  console.log(data);
+  if (isLoading) return <Loading classParent="min-h-[calc(100vh-400px)]" />;
 
   return (
     <div className="mt-5">

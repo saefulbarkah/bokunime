@@ -37,7 +37,7 @@ export default function Home() {
       {/* Main content */}
       <div className="mt-[25px]">
         <Tabs defaultValue="recommendation" className="w-full">
-          <div className="sticky top-0 z-50 bg-background pt-[10px]">
+          <div className="sticky top-0 z-50 bg-background pt-[10px] container">
             <Search />
             <TabMenus />
           </div>

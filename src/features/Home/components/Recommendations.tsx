@@ -3,11 +3,12 @@ import CardAnimeSlider from '@/components/Slider';
 import { useRec } from '@/hooks/api';
 import React from 'react';
 import { AnimeItemSlide } from './AnimeItemSlide';
+import Loading from '@/components/Loading';
 
 export const Recommendations = () => {
   const { data, isLoading } = useRec();
 
-  if (isLoading) return <p>loading....</p>;
+  if (isLoading) return <Loading classParent="min-h-[calc(100vh-400px)]" />;
 
   return (
     <div className="flex flex-col gap-10">

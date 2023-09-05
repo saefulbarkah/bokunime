@@ -1,3 +1,10 @@
+export type episodeLists = {
+  title: string;
+  slug: string;
+  episode: number;
+  releaseDate: string;
+};
+
 export type animeTypes = {
   title: string;
   slug: string;
@@ -9,4 +16,8 @@ export type animeTypes = {
   status: string;
   series: string;
   score: number;
+  rating: string;
+  episodeLists: episodeLists[];
+  synopsis: string;
+  studio: string;
 };
