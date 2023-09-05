@@ -1,6 +1,6 @@
-import { NEXT_PUBLIC_API_URL } from '@/config/siteConfig';
 import { Detail } from '@/features/Detail';
 import { animeTypes } from '@/types';
+import { api } from '@/utils/api/api';
 import React from 'react';
 
 async function getAnime({
@@ -9,13 +9,8 @@ async function getAnime({
   slug: string;
 }): Promise<Partial<animeTypes>> {
   try {
-    const response = await fetch(
-      NEXT_PUBLIC_API_URL + '/anime/detail/' + slug,
-      {
-        cache: 'no-store',
-      }
-    );
-    const data = await response.json();
+    const response = await api.get('/anime/detail/' + slug);
+    const data = await response.data;
     return data;
   } catch (error) {
     const e: any = error;
