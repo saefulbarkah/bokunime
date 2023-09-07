@@ -9,11 +9,11 @@ interface TSearch
   onSearch?: () => void;
 }
 
-function Search({ children, onSearch, ...props }: TSearch) {
+function Search({ children, placeholder, onSearch, ...props }: TSearch) {
   return (
     <div className="relative">
       <Input
-        placeholder="Search anime, movies, etc ...."
+        placeholder={placeholder || 'Search anime, movies, etc ....'}
         className="pl-12 h-[47px] text-md"
         onChange={onSearch}
         {...props}
