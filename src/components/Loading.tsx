@@ -2,24 +2,17 @@ import { cn } from '@/lib/utils';
 import React, { FC } from 'react';
 import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 
-interface LoadingProps {
-  classIcon?: string;
-  classParent?: string;
-}
+interface LoadingProps extends React.HTMLAttributes<HTMLElement> {}
 
-const Loading: FC<LoadingProps> = ({ classIcon, classParent }) => {
+const Loading: FC<LoadingProps> = ({ className }) => {
   return (
     <div
       className={cn(
         'w-full flex items-center justify-center leading-none',
-        classParent
+        className
       )}
     >
-      <i
-        className={cn('text-primary text-[40px] animate-spin', {
-          classIcon,
-        })}
-      >
+      <i className={cn('text-primary text-[40px] animate-spin')}>
         <AiOutlineLoading3Quarters />
       </i>
     </div>

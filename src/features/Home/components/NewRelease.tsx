@@ -8,7 +8,7 @@ import Loading from '@/components/Loading';
 export const NewRelease = () => {
   const { data, isLoading } = useNewRelease();
 
-  if (isLoading) return <Loading classParent="min-h-[calc(100vh-400px)]" />;
+  if (isLoading) return <Loading className="min-h-[calc(100vh-400px)]" />;
 
   return (
     <div className="flex flex-col gap-2">
