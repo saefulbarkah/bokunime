@@ -47,7 +47,7 @@ export const MenuContent = ({ isLoading, series, data }: T) => {
           <TabContent value="downloads">
             {data.downloads.length === 0 && (
               <p className="text-center font-semibold text-paragraph flex items-center justify-center h-[200px]">
-                No downlaod options
+                No download options
               </p>
             )}
             <div className="flex flex-col gap-5">
