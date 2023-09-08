@@ -2,7 +2,7 @@ import { useBookmark } from '@/hooks/useBookmark';
 import React from 'react';
 import { BsBookmark, BsBookmarkFill } from 'react-icons/bs';
 
-export default function SaveBookmark({ data }: any) {
+export default function SaveBookmark({ data }: { data: any }) {
   const { isAlreadySave, addToBookmark } = useBookmark({
     data,
   });

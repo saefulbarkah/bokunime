@@ -14,10 +14,42 @@ export type animeTypes = {
   genres: string[];
   episode: number | string;
   status: string;
-  series: string;
   score: number;
-  rating: string;
+  rating: number;
   episodeLists: episodeLists[];
   synopsis: string;
   studio: string;
 };
+
+export type downloadLists = {
+  downloads: {
+    format: string;
+    data: {
+      resolution: string;
+      servers: {
+        serverName: string;
+        link: string;
+      }[];
+    }[];
+  }[];
+};
+
+export type episodeType = Pick<
+  animeTypes,
+  'genres' | 'releaseDate' | 'rating' | 'type'
+> &
+  downloadLists & {
+    titleEpisode: string;
+    season: string;
+    releaseYear: string;
+    streamURL: string;
+    recommendationSeries: Pick<
+      animeTypes,
+      'title' | 'thumbnail' | 'slug' | 'type' | 'status'
+    >[];
+    series: {
+      name: string;
+      slug: string;
+    };
+    duration: string | number;
+  };

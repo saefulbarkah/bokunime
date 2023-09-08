@@ -22,32 +22,26 @@ const getDownloadEpisode = (html: string) => {
   const downloads: any = [];
   $container.find('.soraddlx').each((idx, el) => {
     const format = $(el).find('.sorattlx h3').text();
-    const resolution = $(el)
-      .find('.soraurlx strong')
-      .map((id, ele) => {
-        const resolution = $(ele).text();
-        return { resolution };
-      })
-      .get();
-    const downloadLink = $(el)
-      .find('.soraurlx a')
-      .map((id, ele) => {
-        const link = $(ele).attr('href');
-        const serverName = $(ele).text();
-        return { serverName, link };
-      })
-      .get();
-    downloads.push({
-      format,
-      data: resolution.map((resolutionItem, id) => {
-        return {
-          ...resolutionItem,
-          servers: downloadLink.map((serverItem) => {
-            return { ...serverItem };
-          }),
-        };
-      }),
-    });
+    const resolutions: any = [];
+
+    $(el)
+      .find('.soraurlx')
+      .each((resIndex, resElement) => {
+        const resolution = $(resElement).find('strong').text();
+        const servers: any = [];
+
+        $(resElement)
+          .find('a[target="_blank"]')
+          .each((linkIndex, linkElement) => {
+            const serverName = $(linkElement).text();
+            const link = $(linkElement).attr('href');
+            servers.push({ serverName, link });
+          });
+
+        resolutions.push({ resolution, servers });
+      });
+
+    downloads.push({ format, data: resolutions });
   });
   return downloads;
 };
