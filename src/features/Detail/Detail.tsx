@@ -12,10 +12,12 @@ import {
   Information,
   tabMenuDetail,
 } from '../TabContent/TabContent';
+import { BackNavigation } from '@/components/BackNavigation';
 
 export const Detail = ({ data }: { data: Partial<animeTypes> }) => {
   return (
     <div className="relative min-h-screen">
+      <BackNavigation className="absolute top-0 mt-2 z-50 text-white" />
       <DetailBanner src={`${data.thumbnail}`} />
       <div className="absolute top-0 w-full flex items-end justify-between translate-y-[38%] z-50 container">
         <Thumbnail src={`${data.thumbnail}`} />
