@@ -10,7 +10,7 @@ export const AnimeItemSlide = ({ item }: { item?: Partial<animeTypes>[] }) => {
       {item?.map((itm, id) => (
         <SwiperSlide key={id}>
           <Link
-            href={'/episode/' + itm.slug}
+            href={'/stream/' + itm.slug}
             className="flex flex-col gap-2 items-center"
           >
             <div className="relative h-[250px] w-full">

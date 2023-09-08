@@ -5,9 +5,12 @@ import React from 'react';
 import { AnimeItemSlide } from './AnimeItemSlide';
 import Loading from '@/components/Loading';
 
-export const Recommendations = () => {
-  const { data, isLoading } = useRec();
+type TRec = {
+  data: any;
+  isLoading: boolean;
+};
 
+export const Recommendations = ({ data, isLoading }: TRec) => {
   if (isLoading) return <Loading className="min-h-[calc(100vh-400px)]" />;
 
   return (
