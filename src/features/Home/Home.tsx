@@ -6,13 +6,15 @@ import { Recommendations } from './components/Recommendations';
 import { NewRelease } from './components/NewRelease';
 import { Popular } from './components/Popular';
 import Search from '../../components/Search';
+import { useNewRelease, usePopular, useRec } from '@/hooks/api';
 
 const TabMenus = () => {
   const menus = [
-    { value: 'recommendation', label: 'Recommendation' },
-    { value: 'new-release', label: 'New release' },
-    { value: 'popular', label: 'Popular' },
+    { value: 'recommendation', label: 'Rekomendasi' },
+    { value: 'new-release', label: 'Rilisan terbaru' },
+    { value: 'popular', label: 'Populer' },
   ];
+
   return (
     <TabsList className="bg-transparent dark:bg-background w-full justify-start py-[30px]">
       {menus.map((item, idx) => (
@@ -30,6 +32,10 @@ const TabMenus = () => {
 };
 
 export default function Home() {
+  const { data: dataNew, isLoading: loadingNewRelease } = useNewRelease();
+  const { data: dataPopular, isLoading: loadingPopluar } = usePopular();
+  const { data: dataRec, isLoading: loadingRec } = useRec();
+
   return (
     <div>
       <Discover />
@@ -42,13 +48,13 @@ export default function Home() {
             <TabMenus />
           </div>
           <TabsContent value="recommendation">
-            <Recommendations />
+            <Recommendations data={dataRec} isLoading={loadingRec} />
           </TabsContent>
           <TabsContent value="new-release">
-            <NewRelease />
+            <NewRelease data={dataNew} isLoading={loadingNewRelease} />
           </TabsContent>
           <TabsContent value="popular">
-            <Popular />
+            <Popular data={dataPopular} isLoading={loadingNewRelease} />
           </TabsContent>
         </Tabs>
       </div>

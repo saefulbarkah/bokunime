@@ -5,12 +5,19 @@ import { Thumbnail } from './components/Thumbnail';
 import ButtonPlay from './components/ButtonPlay';
 import { animeTypes } from '@/types';
 import { Info } from './components/Info';
-import { Rating } from './components/Rating';
-import { TabDetail } from './components/TabDetail';
+import { Rating } from '../../components/Rating';
+import { Tab, TabContent, TabList, TabTrigger } from '@/components/Tab';
+import {
+  EpisodeLists,
+  Information,
+  tabMenuDetail,
+} from '../TabContent/TabContent';
+import { BackNavigation } from '@/components/BackNavigation';
 
 export const Detail = ({ data }: { data: Partial<animeTypes> }) => {
   return (
     <div className="relative min-h-screen">
+      <BackNavigation className="absolute top-0 mt-2 z-50 text-white" />
       <DetailBanner src={`${data.thumbnail}`} />
       <div className="absolute top-0 w-full flex items-end justify-between translate-y-[38%] z-50 container">
         <Thumbnail src={`${data.thumbnail}`} />
@@ -27,7 +34,17 @@ export const Detail = ({ data }: { data: Partial<animeTypes> }) => {
           <Rating rating={data.rating} />
         </div>
         <Info data={data} />
-        <TabDetail data={data} />
+        <Tab defaultValue="information" className="mt-5">
+          <TabList defaultValue={'information'}>
+            <TabTrigger menus={tabMenuDetail} />
+          </TabList>
+          <TabContent value="information">
+            <Information synopsis={data.synopsis} />
+          </TabContent>
+          <TabContent value="episode-lists">
+            <EpisodeLists episodeLists={data.episodeLists!} />
+          </TabContent>
+        </Tab>
       </div>
     </div>
   );

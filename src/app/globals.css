@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .customScroll::-webkit-scrollbar {
+    width: 5px;
+  }
+  /* Track */
+  .customScroll::-webkit-scrollbar-track {
+    @apply bg-slate-700/5;
+  }
+
+  /* Handle */
+  .customScroll::-webkit-scrollbar-thumb {
+    @apply bg-card h-2;
+  }
+}

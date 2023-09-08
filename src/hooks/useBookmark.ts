@@ -2,7 +2,7 @@
 import { useBookmarkState } from '@/stores/bookmark';
 import useStore from '@/stores/useStore';
 import { animeTypes } from '@/types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 export const useBookmark = ({ data }: { data?: Partial<animeTypes> } = {}) => {
   const bookmark = useStore(useBookmarkState, (state) => state.bookmark);
@@ -16,5 +16,9 @@ export const useBookmark = ({ data }: { data?: Partial<animeTypes> } = {}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookmark]);
 
-  return { bookmark, isAlreadySave, addToBookmark };
+  return {
+    bookmark,
+    isAlreadySave,
+    addToBookmark,
+  };
 };

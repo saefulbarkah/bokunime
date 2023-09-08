@@ -32,13 +32,11 @@ export async function GET(req: NextRequest) {
         .get();
       const genres = information[4].split(', ');
       const status = information[0].toLowerCase();
-      const series = information[3];
       dataReleases.push({
         title,
         thumbnail,
         slug,
         status,
-        series,
         score: Number(score),
         genres,
       });
