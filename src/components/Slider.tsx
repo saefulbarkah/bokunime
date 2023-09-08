@@ -9,13 +9,13 @@ import 'swiper/css';
 
 interface CardProps extends React.PropsWithChildren, SwiperProps {}
 
-function Slider({ children, ...props }: CardProps) {
+function Slider({ children, slidesPerView = 2.4, ...props }: CardProps) {
   // const swiper = React.useRef<SwiperRef | null>(null);
 
   return (
     <div className="relative">
       <Swiper
-        slidesPerView={2.4}
+        slidesPerView={slidesPerView}
         spaceBetween={20}
         slidesOffsetAfter={20}
         slidesOffsetBefore={20}

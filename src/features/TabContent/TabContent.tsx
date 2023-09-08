@@ -4,6 +4,7 @@ import { animeTypes } from '@/types';
 import React from 'react';
 
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 
 interface detailProps {
   synopsis?: string;
@@ -27,6 +28,7 @@ const Information = ({ synopsis }: detailProps) => {
 
 interface episodeListType extends Pick<animeTypes, 'episodeLists'> {}
 const EpisodeLists = ({ episodeLists }: episodeListType) => {
+  const params = useParams();
   return (
     <div className="mt-5 flex flex-col gap-2">
       <div className="flex gap-[10px]">
@@ -45,7 +47,9 @@ const EpisodeLists = ({ episodeLists }: episodeListType) => {
               <div className="w-[50px] text-center">{item.episode}</div>
               <Link
                 href={'/stream/' + item.slug}
-                className="flex-1 truncate bg-card p-2 rounded-md text-sm hover:bg-danger hover:text-white transition"
+                className={`flex-1 truncate bg-card p-2 rounded-md text-sm hover:bg-danger hover:text-white transition ${
+                  params.slug === item.slug ? 'bg-danger text-white' : ''
+                }`}
               >
                 {item.title}
               </Link>

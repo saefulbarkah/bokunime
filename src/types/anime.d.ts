@@ -34,6 +34,11 @@ export type downloadLists = {
   }[];
 };
 
+export type recSeriesT = Pick<
+  animeTypes,
+  'title' | 'thumbnail' | 'slug' | 'type' | 'status'
+>[];
+
 export type episodeType = Pick<
   animeTypes,
   'genres' | 'releaseDate' | 'rating' | 'type'
@@ -43,10 +48,7 @@ export type episodeType = Pick<
     season: string;
     releaseYear: string;
     streamURL: string;
-    recommendationSeries: Pick<
-      animeTypes,
-      'title' | 'thumbnail' | 'slug' | 'type' | 'status'
-    >[];
+    recommendationSeries: recSeriesT;
     series: {
       name: string;
       slug: string;

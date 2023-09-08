@@ -8,27 +8,14 @@ import SaveBookmark from '@/components/SaveBookmark';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Dvider } from '@/components/ui/Dvider';
 import Link from 'next/link';
-import {
-  EpisodeLists,
-  Information,
-  tabMenuDetail,
-  tabMenuTypes,
-} from '../TabContent/TabContent';
-import { Tab, TabContent, TabList, TabTrigger } from '@/components/Tab';
-import Loading from '@/components/Loading';
+import { MenuContent } from './components/MenuContent';
+import { RecomendationSeries } from './components/RecSeries';
 
 export default function Streaming({ data }: { data: episodeType }) {
   const { data: series, isLoading: seriesLoading } = useAnime({
     slug: data.series.slug,
   });
 
-  const tabMenu: tabMenuTypes[] = [
-    ...tabMenuDetail,
-    {
-      value: 'downloads',
-      label: 'Downloads',
-    },
-  ];
   return (
     <div className="relative">
       <Player src={data.streamURL} />
@@ -85,59 +72,9 @@ export default function Streaming({ data }: { data: episodeType }) {
           </div>
         </div>
       </div>
-      <Tab className="mt-5" defaultValue="information">
-        <TabList>
-          <TabTrigger menus={tabMenu} />
-        </TabList>
-
-        {seriesLoading ? (
-          <Loading className="mt-[80px]" />
-        ) : (
-          <>
-            <TabContent value="information">
-              <Information synopsis={series?.synopsis} />
-            </TabContent>
-            <TabContent value="episode-lists">
-              <EpisodeLists episodeLists={series?.episodeLists!} />
-            </TabContent>
-            <TabContent value="downloads">
-              <div className="flex flex-col gap-5">
-                {data.downloads.map((item, id) => (
-                  <React.Fragment key={id}>
-                    <div className="bg-indigo-700 text-white px-2 py-2 text-md rounded">
-                      <h2>{item.format}</h2>
-                    </div>
-                    {item.data.map((itm, idx) => (
-                      <React.Fragment key={idx}>
-                        <div className="flex flex-col gap-3 px-2">
-                          <div className="flex gap-2 text-md items-center">
-                            <h2 className="w-[50px]">{itm.resolution}</h2>
-                            <div className="grid grid-cols-3 gap-[10px] flex-1 items-center">
-                              {itm.servers.map((server, idx) => (
-                                <Link
-                                  href={server.link}
-                                  target="_blank"
-                                  className="bg-card py-[5px] flex items-center justify-center rounded px-[5px] hover:bg-danger hover:text-white transition"
-                                  key={idx}
-                                >
-                                  <p className="text-sm  text-center">
-                                    {server.serverName}
-                                  </p>
-                                </Link>
-                              ))}
-                            </div>
-                          </div>
-                          <Dvider />
-                        </div>
-                      </React.Fragment>
-                    ))}
-                  </React.Fragment>
-                ))}
-              </div>
-            </TabContent>
-          </>
-        )}
-      </Tab>
+      {/* Tab Content */}
+      <MenuContent data={data} series={series!} isLoading={seriesLoading} />
+      <RecomendationSeries data={data.recommendationSeries} />
     </div>
   );
 }

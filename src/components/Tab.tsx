@@ -17,11 +17,11 @@ const Tab = ({ children, ...props }: tabType) => {
 
 const TabList = ({ children, className, ...props }: TabsListProps) => {
   return (
-    <>
-      <div className="container">
+    <div className="sticky top-0">
+      <div className="container bg-background">
         <TabsList
           className={cn(
-            'bg-transparent w-full justify-start dark:bg-transparent gap-[19px]',
+            'bg-transparent w-full justify-start dark:bg-transparent gap-[19px] container',
             className
           )}
           {...props}
@@ -30,7 +30,7 @@ const TabList = ({ children, className, ...props }: TabsListProps) => {
         </TabsList>
       </div>
       <Dvider />
-    </>
+    </div>
   );
 };
 
