@@ -1,16 +1,12 @@
 'use client';
-import { useBookmark } from '@/hooks/useBookmark';
+import SaveBookmark from '@/components/SaveBookmark';
 import { animeTypes } from '@/types';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import React from 'react';
-import { BsBookmarkFill, BsBookmark } from 'react-icons/bs';
 
 export const Info = ({ data }: { data: Partial<animeTypes> }) => {
   const params = useParams();
   const slug = params.slug as string;
-  const { isAlreadySave, addToBookmark } = useBookmark({
-    data,
-  });
 
   return (
     <div className="flex items-center justify-between container">
@@ -50,14 +46,7 @@ export const Info = ({ data }: { data: Partial<animeTypes> }) => {
           ) : null}
         </div>
       </div>
-      <button
-        className={`text-[35px] ${
-          isAlreadySave ? 'text-danger' : 'text-secondary'
-        }`}
-        onClick={() => addToBookmark({ ...data, slug })}
-      >
-        {isAlreadySave ? <BsBookmarkFill /> : <BsBookmark />}
-      </button>
+      <SaveBookmark data={{ ...data, slug }} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import { Thumbnail } from './components/Thumbnail';
 import ButtonPlay from './components/ButtonPlay';
 import { animeTypes } from '@/types';
 import { Info } from './components/Info';
-import { Rating } from './components/Rating';
+import { Rating } from '../../components/Rating';
 import { Tab, TabContent, TabList, TabTrigger } from '@/components/Tab';
 import {
   EpisodeLists,
