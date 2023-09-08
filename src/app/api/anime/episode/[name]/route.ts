@@ -33,7 +33,9 @@ const getDownloadEpisode = (html: string) => {
         $(resElement)
           .find('a[target="_blank"]')
           .each((linkIndex, linkElement) => {
-            const serverName = $(linkElement).text();
+            const serverName = $(linkElement)
+              .text()
+              .replace(/\s*\([^)]*\)/, '');
             const link = $(linkElement).attr('href');
             servers.push({ serverName, link });
           });
