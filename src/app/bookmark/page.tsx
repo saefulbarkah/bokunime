@@ -3,8 +3,9 @@
 import { BackNavigation } from '@/components/BackNavigation';
 import Loading from '@/components/Loading';
 import Search from '@/components/Search';
+import { useBookmark } from '@/hooks/useBookmark';
 import dynamic from 'next/dynamic';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 const RenderBookmark = dynamic(
   () => import('@/features/Bookmark/components/BookmarkItems'),
@@ -14,7 +15,20 @@ const RenderBookmark = dynamic(
   }
 );
 
-export default function page() {
+export default function Page() {
+  const [searchBookmark, setSearch] = React.useState('');
+  const { bookmark } = useBookmark();
+
+  const filteredBookmark = useMemo(() => {
+    if (!searchBookmark) return bookmark;
+    return bookmark?.filter((item) => item.title === searchBookmark);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchBookmark, bookmark]);
+
+  const onSearchBookmark = (val: string) => {
+    setSearch(val);
+  };
+
   return (
     <div className="min-h-screen">
       <div className="pt-[30px] container">
@@ -26,10 +40,15 @@ export default function page() {
           </h2>
         </div>
         <div className="mt-5">
-          <Search placeholder="Temukan anime di bookmark" />
+          <Search
+            placeholder="Temukan anime di bookmark"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              onSearchBookmark(e.target.value);
+            }}
+          />
         </div>
         <div className="mt-5">
-          <RenderBookmark />
+          <RenderBookmark items={filteredBookmark} isSearch={searchBookmark} />
         </div>
       </div>
     </div>
