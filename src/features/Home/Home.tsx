@@ -5,8 +5,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Recommendations } from './components/Recommendations';
 import { NewRelease } from './components/NewRelease';
 import { Popular } from './components/Popular';
-import Search from '../../components/Search';
 import { useNewRelease, usePopular, useRec } from '@/hooks/api';
+import { FilterAnime } from '@/components/FilterAnime';
+import { useFilterAnime } from '@/hooks/api/useFilterAnime';
 
 const TabMenus = () => {
   const menus = [
@@ -16,7 +17,7 @@ const TabMenus = () => {
   ];
 
   return (
-    <TabsList className="bg-transparent dark:bg-background w-full justify-start py-[30px]">
+    <TabsList className="bg-transparent dark:bg-background w-full justify-start py-[30px] container">
       {menus.map((item, idx) => (
         <TabsTrigger
           value={item.value}
@@ -43,8 +44,8 @@ export default function Home() {
       {/* Main content */}
       <div className="mt-[25px]">
         <Tabs defaultValue="recommendation" className="w-full">
-          <div className="sticky top-0 z-50 bg-background pt-[10px] container">
-            <Search />
+          <div className="sticky top-0 z-50 bg-background pt-[10px]">
+            <FilterAnime />
             <TabMenus />
           </div>
           <TabsContent value="recommendation">

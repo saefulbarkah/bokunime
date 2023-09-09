@@ -6,12 +6,13 @@ Bokunime is website for streaming anime online or download, this app generated d
 
 ## Features
 
-- [ ] Recommendations
-- [ ] New Releases
-- [ ] Streaming
-- [ ] Download anime
-- [ ] Release schedule
-- [ ] Ongoing anime
-- [ ] Save to bookmark
+- [x] Recommendations
+- [x] New Releases
+- [x] Streaming
+- [x] Download anime
+- [x] Release schedule
+- [x] Popular anime
+- [x] Save to bookmark
+- [x] Filter aniem
 
-Status: `development`
+Status: `Production`

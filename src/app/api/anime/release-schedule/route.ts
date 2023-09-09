@@ -42,8 +42,27 @@ export async function GET(req: NextRequest) {
         }),
       });
     });
+    const weekdaysInOrder = [
+      'senin',
+      'selasa',
+      'rabu',
+      'kamis',
+      "jum'at",
+      'sabtu',
+    ];
 
-    return NextResponse.json(scheduleData);
+    const sortData = weekdaysInOrder
+      .filter((day) =>
+        scheduleData.some((item) => item.day.toLowerCase() === day)
+      )
+      .map((day) => {
+        const item = scheduleData.find(
+          (item) => item.day.toLowerCase() === day
+        );
+        return item ? item : { day, data: [] };
+      });
+
+    return NextResponse.json(sortData);
   } catch (e: any) {
     return httpApiErrorHandle(e);
   }
