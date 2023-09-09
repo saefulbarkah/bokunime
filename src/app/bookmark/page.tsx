@@ -21,7 +21,9 @@ export default function Page() {
 
   const filteredBookmark = useMemo(() => {
     if (!searchBookmark) return bookmark;
-    return bookmark?.filter((item) => item.title === searchBookmark);
+    return bookmark?.filter((item) =>
+      item.title?.includes(searchBookmark.toLowerCase())
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchBookmark, bookmark]);
 
