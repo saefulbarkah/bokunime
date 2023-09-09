@@ -11,7 +11,7 @@ Bokunime is website for streaming anime online or download, this app generated d
 - [x] Streaming
 - [x] Download anime
 - [x] Release schedule
-- [x] Ongoing anime
+- [x] Popular anime
 - [x] Save to bookmark
 - [x] Filter aniem
 
