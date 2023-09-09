@@ -31,7 +31,6 @@ export default function Page() {
     setSearch(val);
   };
 
-  console.log(filteredBookmark);
 
   return (
     <div className="min-h-screen">
