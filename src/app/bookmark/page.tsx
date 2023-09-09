@@ -22,7 +22,7 @@ export default function Page() {
   const filteredBookmark = useMemo(() => {
     if (!searchBookmark) return bookmark;
     return bookmark?.filter((item) =>
-      item.title?.includes(searchBookmark.toLowerCase())
+      item.title?.toLowerCase().includes(searchBookmark.toLowerCase())
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchBookmark, bookmark]);
@@ -30,6 +30,8 @@ export default function Page() {
   const onSearchBookmark = (val: string) => {
     setSearch(val);
   };
+
+  console.log(filteredBookmark);
 
   return (
     <div className="min-h-screen">
